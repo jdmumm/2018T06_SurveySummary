@@ -1,7 +1,7 @@
 ---
-title: "2017 PWS Trawl Survey Summary"
+title: "2018 PWS Trawl Survey Summary"
 author: 'Joshua Mumm'      
-date: "February 22nd, 2018"
+date: "November 1st, 2018"
 output:
   pdf_document:
     includes:
@@ -27,7 +27,7 @@ The 2017 catch included 189 historical legal males.  Mean historical legal male 
 \listoftables
 \listoffigures
 
-![2017 Prince William Sound large-mesh trawl survey grid and tow paths.](../figs/2017_PWS_Lg_Mesh_Survey_8by11_TowPaths_171128.png)
+![2018 Prince William Sound large-mesh trawl survey grid and tow paths.](../figs/2018_PWS_Lg_Mesh_Survey_8by11_TowPaths_181022.png)
 
 \hfill\break
 \hfill\break
@@ -47,7 +47,7 @@ read.csv("../output/931PopMales_Main.csv") %>% filter (YEAR > 1990) %>%
     arrange(Year) -> LM17
 
 kable(LM17, format = "latex", booktabs = T, align = 'r',
-      caption="Male Tanner crab abundance estimates from trawl surveys in Prince William Sound, 1991-2017. Parenthetical size limits are carapace width in millimeters.") %>%
+      caption="Male Tanner crab abundance estimates from trawl surveys in Prince William Sound, 1991-2018. Parenthetical size limits are carapace width in millimeters.") %>%
 kable_styling() %>%
 add_header_above(c(" " = 2, "Pre-Recruits" = 4, "Historical Legal Males" = 2, "Total Males" = 2))%>%
 column_spec(1:2, width = "1.3em") %>%
@@ -73,7 +73,7 @@ read.csv("../output/931PopFems_Main.csv") %>% filter (year > 1990) %>%
   arrange(Year) -> fem
 
 kable(fem, format = "latex", booktabs = T, align = 'r',
-      caption="Female Tanner crab abundance estimates in Prince William Sound.") %>%
+      caption="Female Tanner crab abundance estimates from trawl surveys in Prince William Sound, 1991-2018.") %>%
   kable_styling() %>%
   add_header_above(c(" " = 2, "Juvenile" = 2, "Mature" = 2, "Total Females" = 2))
 ```
@@ -83,56 +83,9 @@ kable(fem, format = "latex", booktabs = T, align = 'r',
 
 ![Historical legal male Tanner crab (>135 mm) abundance estimates with 95% confidence intervals and commercial threshold in Prince William Sound.](../figs/T06LM.png)
 
-```{r}
-read.csv("../output/931PopMales_Main_vldz.csv") %>% 
-    select(Year = YEAR, Tows = n, 'Pre-4 (<73)' = P4, 'Pre-3 (73-92)' = P3,
-           'Pre-2 (93-112)' = P2, 'Pre-1 (113-134)' = P1,
-           'Abund. (>135)'= LM_P_, '± 95% CI'= LM_P_CI_, 'Abund.' = TM_P_, '± 95% CI '= TM_P_CI_ ) %>%
-    mutate (Year = as.factor(Year)) %>%
-    mutate_if(is.numeric,funs(prettyNum(., big.mark=","))) %>%
-    mutate (Year = as.numeric(as.character(Year))) %>%
-    add_row(Year = c(2000,2002,2004,2006,2008,2010,2012,2016), 'Pre-1 (113-134)' = rep('No_Survey',8)) %>%
-    add_row(Year = 2003, Tows = 1) %>%
-    mutate_all(funs(replace(., is.na(.), '-'))) %>%
-    arrange(Year) -> LM17
-
-kable(LM17, format = "latex", booktabs = T, align = 'r',
-      caption="Male Tanner crab abundance estimates for Valdez Arm in Prince William Sound.") %>%
-kable_styling() %>%
-add_header_above(c(" " = 2, "Pre-Recruits" = 4, "Historical Legal Males" = 2, "Total Males" = 2))%>%
-column_spec(1:2, width = "1.3em") %>%
-column_spec(3:5, width = "3.9em")%>%
-column_spec(6, width = "4.1em")%>%
-column_spec(7, width = "4.5em") %>%
-column_spec(8, width = "4.3em") %>%
-column_spec(9, width = "4.6em") %>%
-column_spec(10, width = "4.3em")%>% 
-add_footnote(c("Populations estimates were not calulated in 2003 due to insufficient sample size."), notation = "alphabet")
-
-read.csv("../output/931PopFems_Main_vldz.csv") %>% filter (year > 1990) %>% 
-  select(Year = year, Tows = tows, 'Juvenile' = FT11_P_, '± 95% CI' = FT11_P_CI_,
-         'Abund.' = MF_P_, '± 95% CI ' = MF_P_CI_,
-         'Abund. ' =TF_P_, '± 95% CI  ' = TF_P_CI_) %>%
-
-  mutate (Year = as.factor(Year)) %>%
-  mutate_if(is.numeric,funs(prettyNum(., big.mark=","))) %>%
-  mutate (Year = as.numeric(as.character(Year))) %>%
-  add_row(Year = c(2000,2002,2004,2006,2008,2010,2012,2016),  'Abund.' = rep('No_Survey',8)) %>%
-  add_row(Year = 2003, Tows = 1) %>%
-  mutate_all(funs(replace(., is.na(.), '-'))) %>%
-  arrange(Year) -> fem_v
-
-kable(fem_v, format = "latex", booktabs = T, align = 'r',
-      caption="Female Tanner crab abundance estimates for Valdez Arm in Prince William Sound.") %>%
-  kable_styling() %>%
-  add_header_above(c(" " = 2, "Juvenile" = 2, "Mature" = 2, "Total Females" = 2)) %>%
-  add_footnote(c("Populations estimates were not calulated in 2003 due to insufficient sample size."), notation = "alphabet")
-```
-
 \pagebreak
 \newpage
 
-![Historical legal male Tanner crab (>135 mm) abundance estimates and 95% confidence intervals for Valdez Arm in Prince William Sound.](../figs/T06LM_vldz.png)
 
 
 
