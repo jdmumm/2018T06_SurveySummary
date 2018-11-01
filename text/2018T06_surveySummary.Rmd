@@ -27,7 +27,7 @@ The 2017 catch included 189 historical legal males.  Mean historical legal male 
 \listoftables
 \listoffigures
 
-![2018 Prince William Sound large-mesh trawl survey grid and tow paths.](../figs/2018_PWS_Lg_Mesh_Survey_8by11_TowPaths_181022.png)
+![2018 Prince William Sound large-mesh trawl survey grid and tow paths.](../figs/2018_PWS_Lg_Mesh_Survey_8by11_TowPaths_181101.png)
 
 \hfill\break
 \hfill\break
